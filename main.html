@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sensor Data</title>
+  <style>
+    body { font-family: Arial, sans-serif; }
+    h1 { color: #333; }
+    pre { background-color: #f0f0f0; padding: 10px; }
+  </style>
+</head>
+<body>
+  <h1>Solar Aligning Procedure's Sensor Data</h1>
+  <pre id="data"></pre>
+
+  <script>
+    function fetchData() {
+      fetch('http://esp8266.local')
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('data').innerText = data;
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    }
+
+    // Fetch data every second
+    setInterval(fetchData, 1000);
+  </script>
+</body>
+</html>
